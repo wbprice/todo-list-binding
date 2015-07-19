@@ -37,7 +37,7 @@ Example:
 
   <template>
 
-    <p>{{todosSummary}}</p>
+    <p>{{arrayUpdater(todos.*)}}</p>
     <todo-list todos="{{todos}}"/>
 
   </template>
@@ -55,17 +55,12 @@ Example:
       todos: {
         type: Array,
         value: [
-          {
-            name: 'Brad'
-          },
-          {
-            name: 'Charles'
-          },
-          {
-            name: 'Becky'
-          }
+          'Brad',
+          'Charles',
+          'Ricky',
+          'Becky'
         ],
-        observer: '_peopleList'
+        notify: true
       },
       todosSummary: {
         type: String
@@ -82,6 +77,7 @@ Example:
       //
       // This is the point where you should make modifications to the DOM (when
       // necessary), or kick off any processes the element wants to perform.
+
     },
 
     attached: function() {
@@ -92,12 +88,6 @@ Example:
       // visual state or active behavior (measuring sizes, beginning animations,
       // loading resources, etc).
 
-      this.addEventListener('todos-changed', function() {
-
-        this.todosSummary = this.todos.join(', ');
-
-      });
-
     },
 
     detached: function() {
@@ -107,8 +97,8 @@ Example:
       // Use this to clean up anything you did in `attached`.
     },
 
-    _peopleList: function(newValue, oldValue) {
-      this.todosSummary = this.todos.join(', ');
+    arrayUpdater: function(change) {
+      return change.base;
     }
 
   });

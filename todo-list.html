@@ -41,6 +41,7 @@ Example:
     </form>
 
     <paper-menu>
+      <p>{{todos}}</p>
       <template is="dom-repeat" items="{{todos}}">
         <todo-element model="{{item}}"></todo-element>
       </template>
@@ -99,7 +100,7 @@ Example:
 
       var self = this;
 
-      self.unshift('todos', {name: self.newTodo});
+      self.unshift('todos', self.newTodo);
 
       self.newTodo = null;
 
