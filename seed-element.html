@@ -38,7 +38,9 @@ Example:
   <template>
     <h4>List of people</h4>
     <b>Using a computed binding</b>
-    <p>{{arrayUpdater(todos.*)}}</p>
+    <p>{{arrayBinder(todos.*)}}</p>
+    <b>Using a computed property</b>
+    <p>{{todosSummary}}</p>
     <b>Using a regular binding</b>
     <p>{{todos}}</p>
 
@@ -67,7 +69,8 @@ Example:
         notify: true
       },
       todosSummary: {
-        type: String
+        type: String,
+        computed: 'arrayComputer(todos)'
       }
 
     },
@@ -101,8 +104,12 @@ Example:
       // Use this to clean up anything you did in `attached`.
     },
 
-    arrayUpdater: function(change) {
-      return change.base;
+    arrayBinder: function(todos) {
+      return todos.base.join(', ');
+    },
+
+    arrayComputer: function(todos) {
+      return todos.join(', ');
     }
 
   });
