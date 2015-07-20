@@ -70,7 +70,7 @@ Example:
       },
       todosSummary: {
         type: String,
-        computed: 'arrayComputer(todos)'
+        computed: 'arrayBinder(todos.*)'
       }
 
     },
@@ -106,10 +106,6 @@ Example:
 
     arrayBinder: function(todos) {
       return todos.base.join(', ');
-    },
-
-    arrayComputer: function(todos) {
-      return todos.join(', ');
     }
 
   });
