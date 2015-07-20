@@ -36,8 +36,12 @@ Example:
   </style>
 
   <template>
-
+    <h4>List of people</h4>
+    <b>Using a computed binding</b>
     <p>{{arrayUpdater(todos.*)}}</p>
+    <b>Using a regular binding</b>
+    <p>{{todos}}</p>
+
     <todo-list todos="{{todos}}"/>
 
   </template>
